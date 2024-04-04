@@ -7,7 +7,7 @@ data class LockedIconModel(
     @SerializedName("description")
     val description: String,
     @SerializedName("file")
-    val fileModel: FileModel,
+    val fileModel: FileModel?,
     @SerializedName("title")
     val title: String
 )

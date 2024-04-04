@@ -2,6 +2,7 @@ package dev.jayson.temperapp.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dev.jayson.temperapp.data.model.LevelModel
@@ -36,10 +37,31 @@ class LevelsAdapter(private var levels: List<LevelModel>) : RecyclerView.Adapter
 
     override fun getItemCount(): Int = levels.size
 
-    // Method to update the adapter's data
-    fun updateLevels(newLevels: List<LevelModel>) {
-        levels = newLevels
-        notifyDataSetChanged()
+    fun updateLevels(newList: List<LevelModel>) {
+        val diffResult = DiffUtil.calculateDiff(LevelsDiffCallback(levels, newList))
+        levels = newList
+        diffResult.dispatchUpdatesTo(this)
     }
+
+    // ViewHolder class remains the same
+
+    private class LevelsDiffCallback(
+        private val oldList: List<LevelModel>,
+        private val newList: List<LevelModel>
+    ) : DiffUtil.Callback() {
+
+        override fun getOldListSize(): Int = oldList.size
+
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].level == newList[newItemPosition].level
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
+        }
+    }
+
 
 }

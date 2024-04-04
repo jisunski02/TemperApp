@@ -1,11 +1,16 @@
 package dev.jayson.temperapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.tabs.TabLayout
 import dev.jayson.temperapp.databinding.ActivityMainBinding
 import dev.jayson.temperapp.presentation.adapter.LevelsAdapter
 import dev.jayson.temperapp.presentation.viewmodel.LevelsViewModel
@@ -27,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         val factory = LevelsViewModelFactory(applicationContext)
         viewModel = ViewModelProvider(this, factory)[LevelsViewModel::class.java]
 
+
+        setupTabhostDays()
         setupLevelsRecyclerView()
 
     }
@@ -55,4 +62,32 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
-}
+
+    private fun setupTabhostDays(){
+        val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+
+        for (day in days) {
+            val tab = binding.tabLayout.newTab()
+            tab.text = day
+            binding.tabLayout.addTab(tab)
+        }
+
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            @SuppressLint("MissingInflatedId")
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                tab?.let {
+                    val selectedDay = days[it.position]
+                    val view = LayoutInflater.from(this@MainActivity).inflate(R.layout.fragment_day, binding.container, false)
+                    view.findViewById<TextView>(R.id.textView).text = "$selectedDay Content"
+                    binding.container.removeAllViews()
+                    binding.container.addView(view)
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
+    }
+    }
+

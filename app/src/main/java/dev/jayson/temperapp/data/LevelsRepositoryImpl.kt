@@ -8,7 +8,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class LevelsRepositoryImpl(private val context: Context) : LevelsRepository {
-
     override suspend fun fetchLevelList(): LevelListModel {
         return withContext(Dispatchers.IO) {
             val jsonString = context.assets.open("notion.json").bufferedReader().use { it.readText() }

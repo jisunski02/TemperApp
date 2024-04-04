@@ -7,7 +7,7 @@ data class FileModel(
     @SerializedName("contentType")
     val contentType: String,
     @SerializedName("details")
-    val detailsModel: DetailsModel,
+    val detailsModel: DetailsModel?,
     @SerializedName("fileName")
     val fileName: String,
     @SerializedName("url")

@@ -19,6 +19,20 @@ android {
         enabled = true
     }
 
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            // Get the name of the variant (e.g., debug, release)
+            def variantName = variant.name
+
+            // Get the version code and version name
+            def versionCode = variant.versionCode
+            def versionName = variant.versionName
+
+            // Format the APK file name (e.g., MyApp_debug_1.0.0_12345.apk)
+            outputFileName = "TemperApp${variantName}_${versionName}_${versionCode}.apk"
+        }
+    }
+
     defaultConfig {
         applicationId "dev.jayson.temperapp"
         minSdk 24
