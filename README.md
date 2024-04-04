@@ -2,7 +2,7 @@
 #TemperApp
 
 ## Project Set up
-- Android Studio Iguana| 2023.2.1 Patch 
+- Android Studio Iguana | 2023.2.1 Patch 
 - Programming Language: Kotlin
 - Third Party API tool: Postman v9.1.1
 - Gradle Plug in Version: 7.3.1 - > Go to File>Project Structure
