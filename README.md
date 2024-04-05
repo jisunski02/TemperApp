@@ -18,6 +18,17 @@ MVVM focuses on the separation of concerns within the application, Use Cases pla
 
 Why MVVM+Clean Architecture? Because it's very good pattern for developing app with bigger and wide functionalities and makes your code easily testable, you can check it on my Test Folder of the project on how i performed unit testing using mockwebservers with local json file. On top of that i also used Dagger Hilt that automatically generates related modules and components which is very at easy to pass values from Data Layer to Domain Layer up to the Presentation Layer.
 
+## Additional Tech Stack Used
+
+    Live Data & ViewModel
+    Coroutines/Flow
+    Retrofit & OkHttp
+    DaggerHilt
+    JUnit4(Unit Testing)
+    Github(Version Control)
+    
+P.S. Didn't used Room since i'm getting the data from a local json file. If used then will just add another layer for that implementation.
+
 ## APK file 
 
  - [Google Drive Link for APK]([https://drive.google.com/file/d/13DXDzdXvt9vrBNlXst7iSpXXR6tuTNgX/view?usp=drive_link](https://drive.google.com/drive/folders/1AlP6bqwmnx8MeStT3la5Pkw5IrjODhAY)
